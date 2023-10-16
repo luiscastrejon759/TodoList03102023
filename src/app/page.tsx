@@ -11,23 +11,20 @@ export default function List() {
 
   return (
     <>
-      <h1>Tareas:</h1>
-      <input
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-      <button style={{color:'white', fontSize:'15px', border:'2', borderRadius:'4px', background:'red'}} onClick={() => {
-        setTarea(
-          [...tareas, { id: nextId++, name: name }]
-        );
-        setName('');
-      }}>Agregar</button>
-      <form>
-          <label  className="row">
-              <ListaTareas Listado={tareas}/>       
-          </label>
-        </form>   
+      <div className='card-to-do'>
 
+        <h1>Mi Lista Tareas:</h1>
+        <input value={name} onChange={e => setName(e.target.value)}/> 
+        <button style={{color:'white', fontSize:'15px', border:'2', borderRadius:'4px', background:'red'}} onClick={() => {
+          setTarea([...tareas, { id: nextId++, name: name }]);
+          setName('');
+        }}>Agregar</button>
+        <form>
+            <label  className="row">
+                <ListaTareas Listado={tareas}/>       
+            </label>
+          </form>   
+      </div>    
     </>
   );
 }

@@ -17,11 +17,17 @@
 }
 
 body {
+  max-width: 1200px;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(15,5,3)
-    )
-    rgb(15,5,3);
+  background:    rgb(241, 236, 235);
+}
+
+.card-to-do {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  border-radius: 20px;
+  width: 700px;
 }

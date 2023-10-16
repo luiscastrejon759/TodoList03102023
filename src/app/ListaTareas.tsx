@@ -5,12 +5,17 @@ export default function Listado(props){
 
   let numerotareas = props.Listado.length
 
-  return(        
-     <ul style={{color:'white'}}>
-         {props.Listado.map(tarea => (  
-          <Tarea item={tarea}/>
-         ))}
-        <h1 >Total tareas:{numerotareas} </h1>   
-      </ul>    
+  return(  
+    <>
+    <div>
+      
+     <ul style={{color:'black'}}>
+         {props.Listado.map(tarea => (<Tarea item={tarea}/>))}
+         
+         <h1 style={{color:'black'}}>Total tareas:{numerotareas} </h1> 
+         <h1 style={{color:'black'}}>Tareas Completadas: {} </h1> 
+      </ul>  
+      </div>
+      </>   
     );
 }
