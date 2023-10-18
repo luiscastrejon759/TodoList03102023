@@ -1,31 +1,43 @@
 import React, { useState }  from 'react';
 import Tarea from './Tarea';
 
-export default function Listado(props){ 
 
-  let numerotareas = props.Listado.length
-  const [Terminadas, SetTerminadas] = useState(0)
+export default function tareas(props){
 
-  const aumentarContador = ()  =>{
-    SetTerminadas (prev => prev + 1)
+  let numerotareas = props.tareas.length
+  const [Completadas,setContadorTerminadas] = useState(0) 
+  const aumentarContador = () => {
+    setContadorTerminadas(prev => prev + 1)
   }
 
-  const disminuyeContador = ()  =>{
-    SetTerminadas (prev => prev - 1)
+   const disminuyeContador = () => { 
+    setContadorTerminadas(prev => prev - 1);
   }
+  
+  let con=0;     
+  const eliminar = id => {
+    console.log('eliminar', id) 
+    props.eliminarpadre(id)   
+   }
 
-  return(  
+  const edicion = (i,nombre) => {        
+    props.edicionpadre(i,nombre)              
+  };  
+
+  return(        
     <>
-    <div>
       
-     <ul style={{color:'black'}}>
-         {props.Listado.map(tarea => (
-         <Tarea item={tarea} aumentar={aumentarContador} restar={disminuyeContador}/>))}
-         
-         <h1 style={{color:'black'}}>Total tareas:{numerotareas} </h1> 
-         <h1 style={{color:'black'}}>Tareas Completadas: {Terminadas} </h1> 
-      </ul>  
-      </div>
-      </>   
+      <ul >
+          {
+          props.tareas.map(tarea => (          
+            <Tarea item={tarea} aumentar={aumentarContador} restar={disminuyeContador} edicion={edicion} eliminar={eliminar}/>       
+            
+          ))
+          
+          }    
+          <h1 style={{color:'black'}}>Tareas agregadas:{numerotareas} </h1> 
+          <h1 style={{color:'black'}}>Tareas seleccionadas: {Completadas} </h1> 
+      </ul>      
+    </>
     );
 }

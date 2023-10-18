@@ -1,26 +1,35 @@
 import React, { useState } from 'react';
 
 
-export default function item(props){ 
+export default function item(props){
+  
+  const [Modificar,setEditando] = useState(false)  
+  const [nombre, setNombre ] = useState('')
   const handleChange = (event) => {                   
-    if (event.target.checked) {
-   
-      props.aumentar()
-    } else {
-      props.restar()         
-    }        
-}; 
-  return(  
-    <div> 
-      
-        <li  key={props.item.id}><input type="checkbox" onChange={handleChange}/>{props.item.name}   
-        <h1>    
-        <button style={{color:'white', fontSize:'20px', border:'none', borderRadius:'4px', background:'red'}}>Editar</button>
-        <button style={{color:'white', fontSize:'20px', border:'none', borderRadius:'4px', background:'red'}}>Eliminar</button>
-        </h1>
-        </li> 
-      </div>
+        if (event.target.checked) {
+         
+          props.aumentar()
+        } else {
+          props.restar()         
+        }        
+  }; 
 
-                   
+
+  const Editar= () =>{         
+      props.edicion(props.item.id,nombre)
+      setEditando(!Modificar)    
+  }
+
+  const Delete= () =>{
+    props.eliminar(props.item.id)
+  }
+  return(
+        <li key={props.item.id}>
+          <input type="checkbox" onChange={handleChange}/>           
+          { Modificar ? <input type='text' name={nombre} onChange={e => setNombre(e.target.value)} ></input> : props.item.name} 
+          <button style={{color:'black', fontSize:'15px', border:'none', borderRadius:'4px', background:'green'}} onClick={() => Editar(props.item.id)}>{Modificar ? 'Guardar' :'Editar'}</button>
+           <button style={{color:'black', fontSize:'15px', border:'none', borderRadius:'4px', background:'green'}} onClick={() => Delete(props.item.id)}>Eliminar</button>
+        </li>                    
+      
     );
 }
